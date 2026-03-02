@@ -1,0 +1,3 @@
+Now query using an indexed column last_name: 
+EXPLAIN SELECT * FROM employees WHERE last_name = 'Sharma'; 
+SELECT * FROM employees WHERE last_name = 'Sharma'; 
