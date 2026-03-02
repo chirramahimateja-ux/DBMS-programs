@@ -1,0 +1,2 @@
+INSERT INTO employees (first_name, last_name, dept, salary, hired_date) 
+VALUES ('Frank','Kumar','R&D',78000,'2024-07-01'); 
