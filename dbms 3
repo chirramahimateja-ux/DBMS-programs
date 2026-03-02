@@ -1,0 +1,27 @@
+Syntax:
+COMMIT; 
+Example:
+INSERT INTO Students VALUES (101, 'Ravi', 'CSE'); 
+INSERT INTO Students VALUES (102, 'Anita', 'ECE'); 
+COMMIT; -- permanently saves the above two insertions 
+2. SAVEPOINT 
+•	Creates a checkpoint (marker) within a transaction. 
+•	Allows partial rollback to that point without affecting the entire transaction. 
+•	Multiple savepoints can be created in a single transaction. 
+Syntax:
+SAVEPOINT savepoint_name; 
+Example:
+INSERT INTO Students VALUES (103, 'Mahesh', 'IT'); 
+SAVEPOINT sp1; 
+INSERT INTO Students VALUES (104, 'Sita', 'EEE'); 
+SAVEPOINT sp2; 
+DELETE FROM Students WHERE StudentID = 101; 
+Here, we created two savepoints (sp1 and sp2) that allow us to roll back specific parts of the transaction. 
+3. ROLLBACK 
+•	Rolls back (undoes) all changes made in the current transaction (if no COMMIT has been issued). 
+•	Can also rollback partially to a specific SAVEPOINT. 
+Syntax:
+ROLLBACK;   -- Undo all uncommitted changes 
+ROLLBACK TO savepoint_name; -- Undo changes after the specified savepoint 
+Example:
+ROLLBACK TO sp1;  -- undo operations done after savepoint sp1 
