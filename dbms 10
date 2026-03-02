@@ -1,0 +1,4 @@
+-- Drop a secondary index 
+DROP INDEX idx_lastname ON employees; 
+-- Recreate if needed 
+CREATE INDEX idx_lastname ON employees(last_name); 
