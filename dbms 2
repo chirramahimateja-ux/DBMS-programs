@@ -1,0 +1,22 @@
+Queries to generate normalized tables: 
+CREATE TABLE Students AS 
+ SELECT DISTINCT StudentID, StudentName, Major FROM univ_denorm; 
+CREATE TABLE Courses AS 
+ SELECT DISTINCT CourseID, CourseName, Credits FROM univ_denorm; 
+CREATE TABLE Instructors AS 
+ SELECT DISTINCT InstructorID, InstructorName, Phone FROM univ_denorm; 
+CREATE TABLE Enrollments AS 
+ SELECT DISTINCT StudentID, CourseID, EnrollmentDate FROM univ_denorm; 
+CREATE TABLE Course_Instructors AS 
+ SELECT DISTINCT StudentID,CourseID, InstructorID FROM univ_denorm; 
+After splitting into new tables and verifying the normalised tables are in 3NF, BCNF, 4NF. 
+In order to verify 5NF performing JOIN dependency. 
+SELECT e.StudentID, s.StudentName, s.Major, 
+ e.CourseID, c.CourseName, c.Credits, e.EnrollmentDate, 
+ ci.InstructorID, i.InstructorName, i.Phone 
+FROM Enrollments e 
+JOIN Students s ON e.StudentID = s.StudentID 
+JOIN Courses c ON e.CourseID = c.CourseID 
+JOIN Course_Instructors ci ON c.CourseID = ci.CourseID 
+JOIN Instructors i ON ci.InstructorID = i.InstructorID 
+ORDER BY e.StudentID, e.CourseID, ci.InstructorID; 
